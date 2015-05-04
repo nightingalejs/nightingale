@@ -1,11 +1,11 @@
 {
   "name": "springbokjs-logger",
-  "description": "SpringbokJS Logger",
+  "description": "Logger using winston",
   "keywords": [
     "springbokjs",
     "logger"
   ],
-  "version": "2.0.3",
+  "version": "4.0.0",
   "homepage": "https://github.com/christophehurpeau/springbokjs-logger",
   "license": "MIT",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -15,12 +15,13 @@
     "test": "node_modules/.bin/mocha -u tdd tests/lib"
   },
   "dependencies": {
-    "ansi-styles": "^2.0.1"
+    "colors": "^1.1.0",
+    "springbokjs-errors": "^2.1.0",
+    "winston": "christophehurpeau/winston#patch-2"
   },
   "devDependencies": {
-    "gulp": "^3.8",
     "mocha": "^2.2.4",
     "proclaim": "^3.2.1",
-    "springbokjs-library": "^4.0.1"
+    "springbokjs-library": "^4.1.1"
   }
 }

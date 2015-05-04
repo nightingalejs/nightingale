@@ -7,12 +7,12 @@ See the [auto-generated docs](http://christophehurpeau.github.io/springbokjs-log
 
 
 ```js
-var LoggerConsole = require('springbokjs-logger/console');
-var logger = new LoggerConsole();
-logger.setPrefix('[app] ');
-logger.log('This is a log');
+import { createLogger } from 'springbokjs-logger';
+var logger = createLogger();
+logger.info('This is an info');
 logger.warn('This is a warning !');
-logger.write('test ' + logger.blue.bold('This is blue and bold')).write(' keep writing log').nl();
+logger.debug('debug var :', { var: myvar });
+logger.error('catched error ', err);
 ```
 
 [npm-image]: https://img.shields.io/npm/v/springbokjs-logger.svg?style=flat
