@@ -1,0 +1,2997 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/ConsoleLogger.js",
+    "memberof": null,
+    "longname": "src/ConsoleLogger.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Logger from './Logger';\nimport ConsoleHandler from './handlers/ConsoleHandler';\n\n/**\n * A simplified way of creating a {@link Logger} with a {@link ConsoleHandler}\n */\nexport default class ConsoleLogger extends Logger {\n\n    /**\n     * Creates a new ConsoleLogger with a prefix.\n     *\n     * If no min level is specified, the min level is ALL if name is in `process.env.DEBUG`, else WARN\n     *\n     * @param {string} name\n     * @param {int} [minLevel]\n     */\n    constructor(name, minLevel) {\n        super([\n            new ConsoleHandler(minLevel != null ? minLevel : name),\n        ]);\n\n        this.setPrefix(`[${name}]`);\n    }\n}\n"
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ConsoleLogger",
+    "memberof": "src/ConsoleLogger.js",
+    "longname": "src/ConsoleLogger.js~ConsoleLogger",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/ConsoleLogger.js",
+    "importStyle": "ConsoleLogger",
+    "description": "A simplified way of creating a {@link Logger} with a {@link ConsoleHandler}",
+    "lineNumber": 7,
+    "interface": false,
+    "extends": [
+      "src/Logger~Logger"
+    ]
+  },
+  {
+    "__docId__": 2,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/ConsoleLogger.js~ConsoleLogger",
+    "longname": "src/ConsoleLogger.js~ConsoleLogger#constructor",
+    "access": null,
+    "description": "Creates a new ConsoleLogger with a prefix.\n\nIf no min level is specified, the min level is ALL if name is in `process.env.DEBUG`, else WARN",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "minLevel",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Handler.js",
+    "memberof": null,
+    "longname": "src/Handler.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import levels from './levels';\n\n/**\n * Abstract class that handles a record.\n *\n * Has a min level to discard record lower that this level.\n */\nexport default class Handler {\n    /**\n     * @param {int} minLevel\n     * @param {Layout} layout\n     * @param {Output} output\n     */\n    constructor(minLevel, layout, output) {\n        this.minLevel = minLevel;\n        this.layout = layout;\n        this.output = output;\n\n        levels.forEach((level) => {\n            if (level.value < minLevel) {\n                this[level.lcKey] = function() {};\n            }\n        });\n    }\n\n    /**\n     * @param {Object} record\n     */\n    handle(record) {\n        if (record.level < this.minLevel) {\n            return;\n        }\n\n        const formatted = this.layout.format(record);\n        this.output.write(formatted);\n    }\n}\n"
+  },
+  {
+    "__docId__": 4,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Handler",
+    "memberof": "src/Handler.js",
+    "longname": "src/Handler.js~Handler",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/Handler.js",
+    "importStyle": "Handler",
+    "description": "Abstract class that handles a record.\n\nHas a min level to discard record lower that this level.",
+    "lineNumber": 8,
+    "interface": false
+  },
+  {
+    "__docId__": 5,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Handler.js~Handler",
+    "longname": "src/Handler.js~Handler#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "minLevel",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Layout"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "layout",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Output"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "output",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 6,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "minLevel",
+    "memberof": "src/Handler.js~Handler",
+    "longname": "src/Handler.js~Handler#minLevel",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "layout",
+    "memberof": "src/Handler.js~Handler",
+    "longname": "src/Handler.js~Handler#layout",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "output",
+    "memberof": "src/Handler.js~Handler",
+    "longname": "src/Handler.js~Handler#output",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "handle",
+    "memberof": "src/Handler.js~Handler",
+    "longname": "src/Handler.js~Handler#handle",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "record",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 10,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/LogLevel.js",
+    "memberof": null,
+    "longname": "src/LogLevel.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "content": "/**\n * List of levels\n *\n * <ul>\n * <li>ALL: Log everything. Not a level.</li>\n * <li>TRACE: Trace information</li>\n * <li>DEBUG: Detailed debug information</li>\n * <li>INFO: Normal but significant events</li>\n * <li>WARN: Exceptional occurrences that are not errors (Use of deprecated APIs)</li>\n * <li>WARNING: Alias for WARN</li>\n * <li>ERROR: Runtime errors that do not require immediate action but should be logged and monitored</li>\n * <li>CRITICAL: Critical conditions. Example: Application component unavailable, unexpected exception</li>\n * <li>FATAL: Action must be taken immediately. Example: Entire website down, database unavailable, etc\n *          This should trigger the SMS alerts and wake you up</li>\n * <li>ALERT: Alias for FATAL</li>\n * <li>EMERGENCY: Emergency: system is unusable</li>\n * </ul>\n *\n */\nconst LogLevel = Object.freeze({\n    /** @type {Number} Log everything. Not a level. */\n    ALL: 0,\n\n    /** @type {Number} Trace information */\n    TRACE: 10,\n    /** @type {Number} Detailed debug information */\n    DEBUG: 100,\n    /** @type {Number} Normal but significant events */\n    INFO: 200,\n    /** @type {Number} Exceptional occurrences that are not errors (Use of deprecated APIs) */\n    WARN: 300,\n    /** @type {Number} Alias for WARN */\n    WARNING: 300,\n    /** @type {Number} Runtime errors that do not require immediate action but should be logged and monitored */\n    ERROR: 400,\n    /** @type {Number} Critical conditions. Example: Application component unavailable, unexpected exception */\n    CRITICAL: 500,\n    /** @type {Number} Action must be taken immediately. Example: Entire website down, database unavailable, etc\n      *                 This should trigger the SMS alerts and wake you up */\n    FATAL: 550,\n    /** @type {Number} Alias for FATAL */\n    ALERT: 550,\n    /** @type {Number} Emergency: system is unusable */\n    EMERGENCY: 600,\n});\nexport default LogLevel;\n"
+  },
+  {
+    "__docId__": 11,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "LogLevel",
+    "memberof": "src/LogLevel.js",
+    "longname": "src/LogLevel.js~LogLevel",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/LogLevel.js",
+    "importStyle": "LogLevel",
+    "description": "List of levels\n\n<ul>\n<li>ALL: Log everything. Not a level.</li>\n<li>TRACE: Trace information</li>\n<li>DEBUG: Detailed debug information</li>\n<li>INFO: Normal but significant events</li>\n<li>WARN: Exceptional occurrences that are not errors (Use of deprecated APIs)</li>\n<li>WARNING: Alias for WARN</li>\n<li>ERROR: Runtime errors that do not require immediate action but should be logged and monitored</li>\n<li>CRITICAL: Critical conditions. Example: Application component unavailable, unexpected exception</li>\n<li>FATAL: Action must be taken immediately. Example: Entire website down, database unavailable, etc\n         This should trigger the SMS alerts and wake you up</li>\n<li>ALERT: Alias for FATAL</li>\n<li>EMERGENCY: Emergency: system is unusable</li>\n</ul>",
+    "lineNumber": 20,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Logger.js",
+    "memberof": null,
+    "longname": "src/Logger.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import util from 'util';\nimport LogLevel from './LogLevel';\n\n/**\n * Interface that allows you to log records.\n * This records are treated by handlers\n */\nexport default class Logger {\n    /**\n     * Create a new Logger\n     *\n     * @param {Handler[]} handlers\n     */\n    constructor(handlers) {\n        this.handlers = handlers;\n\n        Object.getOwnPropertyNames(Logger.prototype).forEach((key) => {\n            if (key === 'constructor') {\n                return;\n            }\n\n            this[key] = Logger.prototype[key].bind(this);\n        });\n    }\n\n    /**\n     * Write a message\n     *\n     * @param {String} message\n     * @param {String} logLevel\n     * @return {Logger}\n     */\n    write(message, logLevel) {\n        this.output.write(message, logLevel);\n        return this;\n    }\n\n    /**\n     * Handle a record\n     *\n     * Use this only if you know what you are doing.\n     *\n     * @param {Object} record\n     */\n    addRecord(record) {\n        for (let i = 0, length = this.handlers.length; i < length; i++) {\n            let handler = this.handlers[i];\n            if (handler.handle(record) === false) {\n                return;\n            }\n        }\n    }\n\n    /**\n     * Log a message\n     *\n     * @param {String} message\n     * @param {Object} context\n     * @param {int} [logLevel]\n     * @param {Object} [options]\n     * @return {Logger}\n     */\n    log(message, context, logLevel = LogLevel.INFO, options = undefined) {\n        let record = {\n            level: logLevel,\n            prefix: this._prefix,\n            datetime: new Date(),\n            message: message,\n            context: context,\n            extra: {},\n        };\n\n        if (options) {\n            record = Object.assign(options, record);\n        }\n\n        this.addRecord(record);\n        return this;\n    }\n\n    /**\n     * Set the logger prefix\n     *\n     * @param {String} prefix\n     * @param {*} [styles]\n     */\n    setPrefix(prefix, styles) {\n        this._prefix = prefix;\n    }\n\n    /**\n     * Log an debug message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    debug(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.DEBUG, { contextStyles });\n    }\n\n    /**\n     * Log an info message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    info(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.INFO, { contextStyles });\n    }\n\n    /**\n     * Log an warn message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    warn(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.WARN, { contextStyles });\n    }\n\n    /**\n     * Log an error message\n     *\n     * @param {String|Error} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    error(message, context, contextStyles) {\n        return this.log(message.stack || message.message || message, context, LogLevel.ERROR, { contextStyles });\n    }\n\n    /**\n     * Log an alert message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    alert(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.ALERT, { contextStyles });\n    }\n\n    /**\n     * Log an fatal message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    fatal(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.FATAL, { contextStyles });\n    }\n\n    /**\n     * Log an debug message\n     *\n     * @param {*} value\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    inspect(value, context, contextStyles) {\n        value = util.inspect(value, { depth: 6 });\n        return this.log(value, context, LogLevel.DEBUG, { contextStyles, styles: ['gray'] });\n    }\n\n    /**\n     * Log an debugged var\n     *\n     * @param {String} varName\n     * @param {*} varValue\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    inspectVar(varName, varValue, context, contextStyles) {\n        varValue = util.inspect(varValue, { depth: 6 });\n        return this.log(varName + ' = ' + varValue, context, LogLevel.DEBUG, { contextStyles, styles: ['cyan'] });\n    }\n\n    /**\n     * Log an sucess message\n     *\n     * @param {String} message\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n     * @return {Logger}\n     */\n    success(message, context, contextStyles) {\n        return this.log(message, context, LogLevel.INFO, {\n            contextStyles,\n            symbol: '✔',\n            styles: ['green', 'bold'],\n        });\n    }\n\n    /**\n     * Stores current time in milliseconds\n     * in the timers map\n     *\n     * @param {string} name timer name\n     */\n    time(name) {\n        if (name) {\n            if (!this._timers) {\n                this._timers = {};\n            }\n\n            return this._timers[name] = Date.now();\n        }\n\n        return Date.now();\n    }\n\n    /**\n    * Finds difference between when this method\n    * was called and when the respective time method\n    * was called, then logs out the difference\n    * and deletes the original record\n    *\n    * @param {Number=} time return of previous call to time()\n    * @param {string} name timer name\n     * @param {Object} [context]\n     * @param {Object} [contextStyles]\n    */\n    timeEnd(time, name, context, contextStyles) {\n        const now = Date.now();\n\n        if (typeof time !== 'number') {\n            contextStyles = context;\n            context = name;\n            name = time;\n\n            if (!this._timers || !this._timers[name]) {\n                return;\n            }\n\n            time = this._timers[name];\n            delete this._timers[name];\n        }\n\n        const diffTime = now - time;\n        const seconds = diffTime > 1000 && Math.floor(diffTime / 1000);\n        const ms = diffTime - seconds * 1000;\n\n        const message = (name ? name + ': ' : '') + (seconds ? seconds + 's and ' : '') + ms + 'ms';\n        this.log(message, context, LogLevel.INFO, { contextStyles });\n    }\n}\n"
+  },
+  {
+    "__docId__": 13,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Logger",
+    "memberof": "src/Logger.js",
+    "longname": "src/Logger.js~Logger",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/Logger.js",
+    "importStyle": "Logger",
+    "description": "Interface that allows you to log records.\nThis records are treated by handlers",
+    "lineNumber": 8,
+    "interface": false
+  },
+  {
+    "__docId__": 14,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#constructor",
+    "access": null,
+    "description": "Create a new Logger",
+    "lineNumber": 14,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Handler[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "handlers",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 15,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "handlers",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#handlers",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "write",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#write",
+    "access": null,
+    "description": "Write a message",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "logLevel",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addRecord",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#addRecord",
+    "access": null,
+    "description": "Handle a record\n\nUse this only if you know what you are doing.",
+    "lineNumber": 45,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "record",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "log",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#log",
+    "access": null,
+    "description": "Log a message",
+    "lineNumber": 63,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "logLevel",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 19,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setPrefix",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#setPrefix",
+    "access": null,
+    "description": "Set the logger prefix",
+    "lineNumber": 87,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "prefix",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "styles",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 20,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_prefix",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#_prefix",
+    "access": null,
+    "description": null,
+    "lineNumber": 88,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "debug",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#debug",
+    "access": null,
+    "description": "Log an debug message",
+    "lineNumber": 99,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "info",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#info",
+    "access": null,
+    "description": "Log an info message",
+    "lineNumber": 111,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 23,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "warn",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#warn",
+    "access": null,
+    "description": "Log an warn message",
+    "lineNumber": 123,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "error",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#error",
+    "access": null,
+    "description": "Log an error message",
+    "lineNumber": 135,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Error"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 25,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "alert",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#alert",
+    "access": null,
+    "description": "Log an alert message",
+    "lineNumber": 147,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fatal",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#fatal",
+    "access": null,
+    "description": "Log an fatal message",
+    "lineNumber": 159,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 27,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "inspect",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#inspect",
+    "access": null,
+    "description": "Log an debug message",
+    "lineNumber": 171,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 28,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "inspectVar",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#inspectVar",
+    "access": null,
+    "description": "Log an debugged var",
+    "lineNumber": 185,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "varName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "varValue",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 29,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "success",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#success",
+    "access": null,
+    "description": "Log an sucess message",
+    "lineNumber": 198,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Logger"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "time",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#time",
+    "access": null,
+    "description": "Stores current time in milliseconds\nin the timers map",
+    "lineNumber": 212,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "timer name"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 31,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_timers",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#_timers",
+    "access": null,
+    "description": null,
+    "lineNumber": 215,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "timeEnd",
+    "memberof": "src/Logger.js~Logger",
+    "longname": "src/Logger.js~Logger#timeEnd",
+    "access": null,
+    "description": "Finds difference between when this method\nwas called and when the respective time method\nwas called, then logs out the difference\nand deletes the original record",
+    "lineNumber": 235,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number="
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "time",
+        "description": "return of previous call to time()"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "timer name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "context",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "contextStyles",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 33,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/browser.js",
+    "memberof": null,
+    "longname": "src/browser.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 0,
+    "content": ""
+  },
+  {
+    "__docId__": 34,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/formatters/formatterANSI.js",
+    "memberof": null,
+    "longname": "src/formatters/formatterANSI.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import LogLevel from '../LogLevel';\nimport ansi from 'ansi-styles';\n\nconst levelToSymbol = {};\nlevelToSymbol[LogLevel.TRACE] = '•';\nlevelToSymbol[LogLevel.DEBUG] = '•';\nlevelToSymbol[LogLevel.INFO] = '→';\nlevelToSymbol[LogLevel.WARN] = '⚠';\nlevelToSymbol[LogLevel.ERROR] = '✖';\nlevelToSymbol[LogLevel.CRITICAL] = '!';\nlevelToSymbol[LogLevel.FATAL] = '‼';\nlevelToSymbol[LogLevel.EMERGENCY] = '‼';\n\nconst levelToStyles = {};\nlevelToStyles[LogLevel.TRACE] = ['gray'];\nlevelToStyles[LogLevel.DEBUG] = ['gray'];\n// levelToStyles[LogLevel.INFO] = ['gray'];\nlevelToStyles[LogLevel.WARN] = ['yellow'];\nlevelToStyles[LogLevel.ERROR] = ['red', 'bold'];\nlevelToStyles[LogLevel.CRITICAL] = ['red', 'bold'];\nlevelToStyles[LogLevel.FATAL] = ['bgRed', 'white'];\nlevelToStyles[LogLevel.EMERGENCY] = ['bgRed', 'white'];\n\nexport function style(styles, string) {\n    if (!styles.length || !string) {\n        return string;\n    }\n\n    return styles.reduce(function(string, styleName) {\n        let style = ansi[styleName];\n\n        if (!style) {\n            throw new Error('Unknown style: ' + styleName);\n        }\n\n        return style.open + string + style.close;\n    }, string);\n}\n\nfunction displayObject(object, contextStyles) {\n    const keys = Object.keys(object);\n\n    if (keys.length === 0) {\n        return;\n    }\n\n    return '{ ' + keys.map(key => {\n        return key + ': ' + this.style(contextStyles && contextStyles[key], JSON.stringify(object[key]));\n    }).join(', ') + ' }';\n}\n\n/**\n * @param {Object} record\n * @returns {string}\n */\nexport function format(record) {\n    let string = '';\n    if (record.prefix) {\n        string += this.style(['gray'], record.prefix);\n    }\n\n    if (record.datetime) {\n        if (string.length !== 0) {\n            string += ' ';\n        }\n\n        string += this.style(['gray', 'bold'], record.datetime.toTimeString().split(' ')[0]);\n        /* new Date().toFormat('HH24:MI:SS') */\n    }\n\n    let message = record.symbol || levelToSymbol[record.level];\n    let styles = record.styles || levelToStyles[record.level];\n\n    if (record.message) {\n        if (message && message.length !== 0) {\n            message +=  ' ' + record.message;\n        } else {\n            message = record.message;\n        }\n    }\n\n    if (styles) {\n        message = this.style(styles, message);\n    }\n\n    if (string.length !== 0) {\n        string += ' ';\n    }\n\n    string += message;\n\n    if (record.context) {\n        const stringObject = displayObject.call(this, record.context, record.contextStyles);\n\n        if (stringObject) {\n            if (string.length !== 0) {\n                string += ' ';\n            }\n\n            string += stringObject;\n        }\n    }\n\n    if (record.extra) {\n        const stringObject = displayObject.call(this, record.extra);\n\n        if (stringObject) {\n            if (string.length !== 0) {\n                string += ' ';\n            }\n\n            string += stringObject;\n        }\n    }\n\n    return string;\n}\n\n"
+  },
+  {
+    "__docId__": 35,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "levelToSymbol",
+    "memberof": "src/formatters/formatterANSI.js",
+    "longname": "src/formatters/formatterANSI.js~levelToSymbol",
+    "access": null,
+    "export": false,
+    "importPath": "nightingale/src/formatters/formatterANSI.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "levelToStyles",
+    "memberof": "src/formatters/formatterANSI.js",
+    "longname": "src/formatters/formatterANSI.js~levelToStyles",
+    "access": null,
+    "export": false,
+    "importPath": "nightingale/src/formatters/formatterANSI.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 37,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "style",
+    "memberof": "src/formatters/formatterANSI.js",
+    "longname": "src/formatters/formatterANSI.js~style",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterANSI.js",
+    "importStyle": "{style}",
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [
+      {
+        "name": "styles",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 38,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "displayObject",
+    "memberof": "src/formatters/formatterANSI.js",
+    "longname": "src/formatters/formatterANSI.js~displayObject",
+    "access": null,
+    "export": false,
+    "importPath": "nightingale/src/formatters/formatterANSI.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "contextStyles",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 39,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "format",
+    "memberof": "src/formatters/formatterANSI.js",
+    "longname": "src/formatters/formatterANSI.js~format",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterANSI.js",
+    "importStyle": "{format}",
+    "description": null,
+    "lineNumber": 56,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "record",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 40,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/formatters/formatterHtml.js",
+    "memberof": null,
+    "longname": "src/formatters/formatterHtml.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "const htmlStyles = {\n    // text style\n    bold: 'font-weight: bold',\n    italic: 'font-style: italic',\n    underline: 'text-decoration: underline',\n    inverse: 'unicode-bidi: bidi-override; direction: rtl',\n    strikethrough: 'text-decoration: line-through',\n\n    black: 'color: black',\n    red: 'color: red',\n    green: 'color: green',\n    yellow: 'color: yellow',\n    blue: 'color: #4682B4',\n    magenta: 'color: magenta',\n    cyan: 'color: cyan',\n    white: 'color: white',\n    gray: 'color: gray',\n\n    bgBlack: 'background: black',\n    bgRed: 'background: red',\n    bgGreen: 'background: green',\n    bgYellow: 'background: yellow',\n    bgBlue: 'background: blue',\n    bgMagenta: 'background: magenta',\n    bgCyan: 'background: cyan',\n    bgWhite: 'background: white',\n};\n\nexport function style(styles, string) {\n    if (!styles.length || !string) {\n        return string;\n    }\n\n    return '<span style=\"' + styles.map(function(styleName) {\n        return htmlStyles[styleName];\n    }).join('; ') + '\">' + string + '</span>';\n}\n\n/**\n * @param {Object} record\n * @returns {string}\n */\nexport function format(record) {\n    let string = '';\n    if (record.prefix) {\n        string += record.prefix + ' ';\n    }\n\n    if (record.datetime) {\n        string += this.style('bold', record.datetime.toFormat('HH24:MI:SS') + ' ');\n        /* toTimeString().split(' ')[0] */\n    }\n\n    if (record.message) {\n        string += record.message;\n    }\n\n    if (record.context) {\n        string += JSON.stringify(record.context);\n    }\n\n    if (record.extra) {\n        string += JSON.stringify(record.extra);\n    }\n\n    return string;\n}\n"
+  },
+  {
+    "__docId__": 41,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "htmlStyles",
+    "memberof": "src/formatters/formatterHtml.js",
+    "longname": "src/formatters/formatterHtml.js~htmlStyles",
+    "access": null,
+    "export": false,
+    "importPath": "nightingale/src/formatters/formatterHtml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 42,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "style",
+    "memberof": "src/formatters/formatterHtml.js",
+    "longname": "src/formatters/formatterHtml.js~style",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterHtml.js",
+    "importStyle": "{style}",
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "params": [
+      {
+        "name": "styles",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 43,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "format",
+    "memberof": "src/formatters/formatterHtml.js",
+    "longname": "src/formatters/formatterHtml.js~format",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterHtml.js",
+    "importStyle": "{format}",
+    "description": null,
+    "lineNumber": 43,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "record",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 44,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/formatters/formatterJSON.js",
+    "memberof": null,
+    "longname": "src/formatters/formatterJSON.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export function style(styles, string) {\n    return string;\n}\n\n/**\n * @param {Object} record\n * @returns {Object}\n */\nexport function format(record) {\n    return {\n        level: record.level,\n        datetime: record.datetime,\n        message: record.message,\n        extra: record.extra,\n        context: record.context,\n    };\n}\n"
+  },
+  {
+    "__docId__": 45,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "style",
+    "memberof": "src/formatters/formatterJSON.js",
+    "longname": "src/formatters/formatterJSON.js~style",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterJSON.js",
+    "importStyle": "{style}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "params": [
+      {
+        "name": "styles",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 46,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "format",
+    "memberof": "src/formatters/formatterJSON.js",
+    "longname": "src/formatters/formatterJSON.js~format",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterJSON.js",
+    "importStyle": "{format}",
+    "description": null,
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Object}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "record",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 47,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/formatters/formatterRaw.js",
+    "memberof": null,
+    "longname": "src/formatters/formatterRaw.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export { format } from './formatterANSI';\n\nexport function style(styles, string) {\n    return string;\n}\n"
+  },
+  {
+    "__docId__": 48,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "style",
+    "memberof": "src/formatters/formatterRaw.js",
+    "longname": "src/formatters/formatterRaw.js~style",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/formatters/formatterRaw.js",
+    "importStyle": "{style}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "styles",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 49,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/handlers/ConsoleHandler.js",
+    "memberof": null,
+    "longname": "src/handlers/ConsoleHandler.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Handler from '../Handler';\nimport LogLevel from '../LogLevel';\nimport LayoutDefault from '../layouts/LayoutDefault';\nimport * as formatterANSI from '../formatters/formatterANSI';\nimport * as outputConsole from '../outputs/outputConsole';\n\nconst debugValues = process.env.DEBUG && process.env.DEBUG.split(',') || [];\n\nexport default class ConsoleHandler extends Handler {\n    /**\n     * @param {int|string} minLevel if int, see {@link LogLevel} ; if string, based on process.env.DEBUG\n     */\n    constructor(minLevel) {\n        if (typeof minLevel === 'string') {\n            minLevel = debugValues.indexOf(minLevel) !== -1 ? LogLevel.ALL : LogLevel.WARN;\n        }\n\n        super(\n            minLevel,\n            new LayoutDefault(formatterANSI),\n            outputConsole\n        );\n    }\n}\n"
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "debugValues",
+    "memberof": "src/handlers/ConsoleHandler.js",
+    "longname": "src/handlers/ConsoleHandler.js~debugValues",
+    "access": null,
+    "export": false,
+    "importPath": "nightingale/src/handlers/ConsoleHandler.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ConsoleHandler",
+    "memberof": "src/handlers/ConsoleHandler.js",
+    "longname": "src/handlers/ConsoleHandler.js~ConsoleHandler",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/handlers/ConsoleHandler.js",
+    "importStyle": "ConsoleHandler",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/Handler~Handler"
+    ]
+  },
+  {
+    "__docId__": 52,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/handlers/ConsoleHandler.js~ConsoleHandler",
+    "longname": "src/handlers/ConsoleHandler.js~ConsoleHandler#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "int",
+          "string} minLevel if int, see {@link LogLevel"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": ";",
+        "description": "if string, based on process.env.DEBUG"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 53,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/handlers/StringHandler.js",
+    "memberof": null,
+    "longname": "src/handlers/StringHandler.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Handler from '../Handler';\nimport LayoutDefault from '../layouts/LayoutDefault';\nimport * as formatterRaw from '../formatters/formatterRaw';\nimport OutputString from '../outputs/OutputString';\n\nexport default class StringHandler extends Handler {\n    /**\n     * @param {int} minLevel\n     */\n    constructor(minLevel) {\n        super(\n            minLevel,\n            new LayoutDefault(formatterRaw),\n            new OutputString()\n        );\n    }\n\n    get string() {\n        return this.output.string;\n    }\n\n}\n"
+  },
+  {
+    "__docId__": 54,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "StringHandler",
+    "memberof": "src/handlers/StringHandler.js",
+    "longname": "src/handlers/StringHandler.js~StringHandler",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/handlers/StringHandler.js",
+    "importStyle": "StringHandler",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/Handler~Handler"
+    ]
+  },
+  {
+    "__docId__": 55,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/handlers/StringHandler.js~StringHandler",
+    "longname": "src/handlers/StringHandler.js~StringHandler#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "minLevel",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 56,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "string",
+    "memberof": "src/handlers/StringHandler.js~StringHandler",
+    "longname": "src/handlers/StringHandler.js~StringHandler#string",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 57,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/index.js",
+    "memberof": null,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export { default as Logger } from './Logger';\nexport { default as ConsoleLogger } from './ConsoleLogger';\nexport { default as LogLevel } from './LogLevel';\n"
+  },
+  {
+    "__docId__": 58,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/layouts/LayoutDefault.js",
+    "memberof": null,
+    "longname": "src/layouts/LayoutDefault.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class LayoutDefault {\n    constructor(formatter) {\n        this.formatter = formatter;\n    }\n\n    format(record) {\n        return this.formatter.format(record) + '\\n';\n    }\n}\n"
+  },
+  {
+    "__docId__": 59,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "LayoutDefault",
+    "memberof": "src/layouts/LayoutDefault.js",
+    "longname": "src/layouts/LayoutDefault.js~LayoutDefault",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/layouts/LayoutDefault.js",
+    "importStyle": "LayoutDefault",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 60,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/layouts/LayoutDefault.js~LayoutDefault",
+    "longname": "src/layouts/LayoutDefault.js~LayoutDefault#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [
+      {
+        "name": "formatter",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 61,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "formatter",
+    "memberof": "src/layouts/LayoutDefault.js~LayoutDefault",
+    "longname": "src/layouts/LayoutDefault.js~LayoutDefault#formatter",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "format",
+    "memberof": "src/layouts/LayoutDefault.js~LayoutDefault",
+    "longname": "src/layouts/LayoutDefault.js~LayoutDefault#format",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "record",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 63,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/layouts/LayoutHTML.js",
+    "memberof": null,
+    "longname": "src/layouts/LayoutHTML.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class LayoutHTML {\n    constructor(formatter) {\n        this.formatter = formatter;\n    }\n\n    format(record) {\n        return '</div>' + this.formatter.format(record) + '</div>\\n';\n    }\n}\n"
+  },
+  {
+    "__docId__": 64,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "LayoutHTML",
+    "memberof": "src/layouts/LayoutHTML.js",
+    "longname": "src/layouts/LayoutHTML.js~LayoutHTML",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/layouts/LayoutHTML.js",
+    "importStyle": "LayoutHTML",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/layouts/LayoutHTML.js~LayoutHTML",
+    "longname": "src/layouts/LayoutHTML.js~LayoutHTML#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [
+      {
+        "name": "formatter",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 66,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "formatter",
+    "memberof": "src/layouts/LayoutHTML.js~LayoutHTML",
+    "longname": "src/layouts/LayoutHTML.js~LayoutHTML#formatter",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "format",
+    "memberof": "src/layouts/LayoutHTML.js~LayoutHTML",
+    "longname": "src/layouts/LayoutHTML.js~LayoutHTML#format",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "record",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 68,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/levels.js",
+    "memberof": null,
+    "longname": "src/levels.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import LogLevel from './LogLevel';\n\nconst levels = Object.keys(LogLevel).map((key) => {\n    return {\n        key: key,\n        lcKey: key.toLowerCase(),\n        value: LogLevel[key],\n    };\n});\n\nexport default levels;\n"
+  },
+  {
+    "__docId__": 69,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "levels",
+    "memberof": "src/levels.js",
+    "longname": "src/levels.js~levels",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/levels.js",
+    "importStyle": "levels",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/outputs/OutputFile.js",
+    "memberof": null,
+    "longname": "src/outputs/OutputFile.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { createWriteStream } from 'fs';\n\nexport default class OutputFile {\n    constructor(path) {\n        this._stream = createWriteStream(path);\n    }\n\n    write(string) {\n        this._stream.write(string);\n    }\n}\n"
+  },
+  {
+    "__docId__": 71,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "OutputFile",
+    "memberof": "src/outputs/OutputFile.js",
+    "longname": "src/outputs/OutputFile.js~OutputFile",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/outputs/OutputFile.js",
+    "importStyle": "OutputFile",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 72,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/outputs/OutputFile.js~OutputFile",
+    "longname": "src/outputs/OutputFile.js~OutputFile#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "path",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 73,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_stream",
+    "memberof": "src/outputs/OutputFile.js~OutputFile",
+    "longname": "src/outputs/OutputFile.js~OutputFile#_stream",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "write",
+    "memberof": "src/outputs/OutputFile.js~OutputFile",
+    "longname": "src/outputs/OutputFile.js~OutputFile#write",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 75,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/outputs/OutputString.js",
+    "memberof": null,
+    "longname": "src/outputs/OutputString.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class OutputString {\n    constructor() {\n        this._buffer = '';\n    }\n\n    get string() {\n        return this._buffer;\n    }\n\n    write(str, logLevel) {\n        this._buffer += str;\n        return this;\n    }\n}\n"
+  },
+  {
+    "__docId__": 76,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "OutputString",
+    "memberof": "src/outputs/OutputString.js",
+    "longname": "src/outputs/OutputString.js~OutputString",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/outputs/OutputString.js",
+    "importStyle": "OutputString",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/outputs/OutputString.js~OutputString",
+    "longname": "src/outputs/OutputString.js~OutputString#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_buffer",
+    "memberof": "src/outputs/OutputString.js~OutputString",
+    "longname": "src/outputs/OutputString.js~OutputString#_buffer",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "string",
+    "memberof": "src/outputs/OutputString.js~OutputString",
+    "longname": "src/outputs/OutputString.js~OutputString#string",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 80,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "write",
+    "memberof": "src/outputs/OutputString.js~OutputString",
+    "longname": "src/outputs/OutputString.js~OutputString#write",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [
+      {
+        "name": "str",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "logLevel",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 81,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_buffer",
+    "memberof": "src/outputs/OutputString.js~OutputString",
+    "longname": "src/outputs/OutputString.js~OutputString#_buffer",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/outputs/outputConsole.js",
+    "memberof": null,
+    "longname": "src/outputs/outputConsole.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import LogLevel from '../LogLevel';\n\nexport function write(string, logLevel) {\n    let outKey = logLevel >= LogLevel.ERROR ? 'stderr' : 'stdout';\n    process[outKey].write(string);\n}\n"
+  },
+  {
+    "__docId__": 83,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "write",
+    "memberof": "src/outputs/outputConsole.js",
+    "longname": "src/outputs/outputConsole.js~write",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/outputs/outputConsole.js",
+    "importStyle": "{write}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "logLevel",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 84,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/processors/WebProcessor.js",
+    "memberof": null,
+    "longname": "src/processors/WebProcessor.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class WebProcessor {\n    constructor(request) {\n        this.request = request;\n    }\n\n    process(record) {\n        record.extra = record.extra || {};\n        record.extra.url = this.request.url;\n        record.extra.method = this.request.method;\n        record.extra.server = this.request.headers.host;\n        record.extra.referrer = this.request.referrer;\n        record.extra.ip = this.request.headers['x-forwarded-for'] || this.request.connection.remoteAddress;\n    }\n}\n"
+  },
+  {
+    "__docId__": 85,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "WebProcessor",
+    "memberof": "src/processors/WebProcessor.js",
+    "longname": "src/processors/WebProcessor.js~WebProcessor",
+    "access": null,
+    "export": true,
+    "importPath": "nightingale/src/processors/WebProcessor.js",
+    "importStyle": "WebProcessor",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 86,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/processors/WebProcessor.js~WebProcessor",
+    "longname": "src/processors/WebProcessor.js~WebProcessor#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [
+      {
+        "name": "request",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 87,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "request",
+    "memberof": "src/processors/WebProcessor.js~WebProcessor",
+    "longname": "src/processors/WebProcessor.js~WebProcessor#request",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "process",
+    "memberof": "src/processors/WebProcessor.js~WebProcessor",
+    "longname": "src/processors/WebProcessor.js~WebProcessor#process",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "record",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 90,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 111,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 112,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 127,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 128,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 129,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 130,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 131,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 132,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 133,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 134,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 135,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 136,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 138,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 139,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 140,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 141,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 142,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 143,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 144,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  }
+]

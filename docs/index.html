@@ -1,339 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Index</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <script src="scripts/jquery.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
-    
-    
-    <script>
-    var config = {"monospaceLinks":false,"cleverLinks":false,"applicationName":"nightingale","default":{}};
-    </script>
-    
-
-    
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
 </head>
-<body>
-<div id="wrap" class="clearfix">
-    
-<div class="navigation">
-    <h3 class="applicationName"><a href="index.html">nightingale</a></h3>
+<body class="layout-container">
 
-    <div class="search">
-        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
-    </div>
-    <ul class="list">
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/christophehurpeau/nightingale" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
     
-        <li class="item" data-name="ConsoleHandler">
-            <span class="title">
-                <a href="ConsoleHandler.html">ConsoleHandler</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="Handler">
-            <span class="title">
-                <a href="Handler.html">Handler</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Handler#handle"><a href="Handler.html#handle">handle</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="LayoutDefault">
-            <span class="title">
-                <a href="LayoutDefault.html">LayoutDefault</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="LayoutDefault#format"><a href="LayoutDefault.html#format">format</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="LayoutHTML">
-            <span class="title">
-                <a href="LayoutHTML.html">LayoutHTML</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="LayoutHTML#format"><a href="LayoutHTML.html#format">format</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="Logger">
-            <span class="title">
-                <a href="Logger.html">Logger</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Logger#addRecord"><a href="Logger.html#addRecord">addRecord</a></li>
-            
-                <li data-name="Logger#alert"><a href="Logger.html#alert">alert</a></li>
-            
-                <li data-name="Logger#debug"><a href="Logger.html#debug">debug</a></li>
-            
-                <li data-name="Logger#error"><a href="Logger.html#error">error</a></li>
-            
-                <li data-name="Logger#fatal"><a href="Logger.html#fatal">fatal</a></li>
-            
-                <li data-name="Logger#info"><a href="Logger.html#info">info</a></li>
-            
-                <li data-name="Logger#inspect"><a href="Logger.html#inspect">inspect</a></li>
-            
-                <li data-name="Logger#inspectVar"><a href="Logger.html#inspectVar">inspectVar</a></li>
-            
-                <li data-name="Logger#log"><a href="Logger.html#log">log</a></li>
-            
-                <li data-name="Logger#setPrefix"><a href="Logger.html#setPrefix">setPrefix</a></li>
-            
-                <li data-name="Logger#success"><a href="Logger.html#success">success</a></li>
-            
-                <li data-name="Logger#time"><a href="Logger.html#time">time</a></li>
-            
-                <li data-name="Logger#timeEnd"><a href="Logger.html#timeEnd">timeEnd</a></li>
-            
-                <li data-name="Logger#warn"><a href="Logger.html#warn">warn</a></li>
-            
-                <li data-name="Logger#write"><a href="Logger.html#write">write</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="OutputFile">
-            <span class="title">
-                <a href="OutputFile.html">OutputFile</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="OutputFile#write"><a href="OutputFile.html#write">write</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="OutputString">
-            <span class="title">
-                <a href="OutputString.html">OutputString</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="OutputString#string"><a href="OutputString.html#string">string</a></li>
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="OutputString#write"><a href="OutputString.html#write">write</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="StringHandler">
-            <span class="title">
-                <a href="StringHandler.html">StringHandler</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="StringHandler#string"><a href="StringHandler.html#string">string</a></li>
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-        <li class="item" data-name="WebProcessor">
-            <span class="title">
-                <a href="WebProcessor.html">WebProcessor</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="WebProcessor#process"><a href="WebProcessor.html#process">process</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-    </ul>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ConsoleLogger.js~ConsoleLogger.html">ConsoleLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Handler.js~Handler.html">Handler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LogLevel">LogLevel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-levels">levels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">formatters</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">handlers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/handlers/ConsoleHandler.js~ConsoleHandler.html">ConsoleHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/handlers/StringHandler.js~StringHandler.html">StringHandler</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layouts</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layouts/LayoutDefault.js~LayoutDefault.html">LayoutDefault</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layouts/LayoutHTML.js~LayoutHTML.html">LayoutHTML</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">outputs</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/outputs/OutputFile.js~OutputFile.html">OutputFile</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/outputs/OutputString.js~OutputString.html">OutputString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-write">write</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">processors</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/processors/WebProcessor.js~WebProcessor.html">WebProcessor</a></span></span></li>
+</ul>
 </div>
-    <div class="main">
-        <h1 class="page-title" data-filename="index.html">Index</h1>
-        
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="nightingale-npm-version-npm-image-npm-url-build-status-build-status-image-build-status-url-coverage-coverage-image-coverage-url-">nightingale <a href="https://npmjs.org/package/nightingale"><img src="https://img.shields.io/npm/v/nightingale.svg?style=flat-square" alt="NPM version"></a> <a href="https://circleci.com/gh/christophehurpeau/nightingale"><img src="https://img.shields.io/circleci/project/christophehurpeau/nightingale/master.svg?style=flat-square" alt="Build Status"></a> <a href="http://christophehurpeau.github.io/nightingale/coverage/lcov-report/"><img src="http://img.shields.io/badge/coverage-0%-green.svg?style=flat-square" alt="Coverage"></a></h1>
+<p>The nightingale is a bird best known for its powerful and beautiful song.</p>
+<p>See the <a href="http://christophehurpeau.github.io/nightingale/docs/">API</a></p>
+<h3 id="install">Install</h3>
+<pre><code><code class="source-code prettyprint">npm install --save nightingale</code>
+</code></pre><h3 id="how-to-use">How to use</h3>
+<pre><code class="lang-js"><code class="source-code prettyprint">import { Logger, LogLevel } from &apos;nightingale&apos;;
+import ConsoleHandler from &apos;nightingale/handlers/ConsoleHandler&apos;;
+
+const logger = new Logger([ new ConsoleHandler(LogLevel.ALL) ]);
+logger.setPrefix(&apos;[app]&apos;);
+
+// or
+import { ConsoleLogger, LogLevel } from &apos;nightingale&apos;;
+const logger = new ConsoleLogger(&apos;app&apos;, LogLevel.ALL);
 
 
-    
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-    
-
-
-
-
-    <section>
-        <article class="readme"><h1>nightingale <a target="_blank" href="https://npmjs.org/package/nightingale"><img src="https://img.shields.io/npm/v/nightingale.svg?style=flat-square" alt="NPM version"></a> <a target="_blank" href="https://circleci.com/gh/christophehurpeau/nightingale"><img src="https://img.shields.io/circleci/project/christophehurpeau/nightingale/master.svg?style=flat-square" alt="Build Status"></a> <a target="_blank" href="http://christophehurpeau.github.io/nightingale/coverage/lcov-report/"><img src="http://img.shields.io/badge/coverage-0%-green.svg?style=flat" alt="Coverage"></a></h1><p>The nightingale is a bird best known for its powerful and beautiful song.</p>
-<p>See the <a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/">API</a></p>
-<h3>Install</h3><pre class="prettyprint source"><code>npm install --save nightingale</code></pre><h3>How to use</h3><pre class="prettyprint source lang-js"><code>import { Logger, LogLevel } from 'nightingale';
-import ConsoleHandler from 'nightingale/handlers/ConsoleHandler';
-
-const logger = new Logger([ new ConsoleHandler(LogLevel.TRACE) ]);
-
-logger.setPrefix('[app] ');
-logger.log('This is a log');
-logger.warn('This is a warning !');
-logger.success('Listening', { port: 3000 }, { port: ['yellow'] });</code></pre><h3><a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/Logger.html">Logger</a></h3><p>The class with all the methods you call to log things. Contains handlers.</p>
-<h3>Handler</h3><p>How a log is processed: has a layout and an output.
+logger.log(&apos;This is a log&apos;);
+logger.warn(&apos;This is a warning !&apos;);
+logger.success(&apos;Listening&apos;, { port: 3000 }, { port: [&apos;yellow&apos;] });</code>
+</code></pre>
+<h3 id="-logger-http-christophehurpeau-github-io-nightingale-docs-logger-html-"><a href="http://christophehurpeau.github.io/nightingale/docs/Logger.html">Logger</a></h3>
+<p>The class with all the methods you call to log things. Contains handlers.</p>
+<h3 id="debug">Debug</h3>
+<pre><code><code class="source-code prettyprint">DEBUG=worker1 node example/debug</code>
+</code></pre><h3 id="handler">Handler</h3>
+<p>How a log is processed: has a layout and an output.
 Also define a minimum level.</p>
 <ul>
-<li><a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/ConsoleHandler.html">ConsoleHandler</a></li>
-<li><a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/StringHandler.html">StringHandler</a></li>
+<li><a href="http://christophehurpeau.github.io/nightingale/docs/ConsoleHandler.html">ConsoleHandler</a></li>
+<li><a href="http://christophehurpeau.github.io/nightingale/docs/StringHandler.html">StringHandler</a></li>
 </ul>
-<h3>Layout</h3><p>How the log is sent to its output.</p>
-<h3>Formatter</h3><p>How the a line is formatted, with its colors.</p>
-<h3>Output</h3><p>Where the log is sent: console, file, ...</p>
+<h3 id="layout">Layout</h3>
+<p>How the log is sent to its output.</p>
+<h3 id="formatter">Formatter</h3>
+<p>How the a line is formatted, with its colors.</p>
+<h3 id="output">Output</h3>
+<p>Where the log is sent: console, file, ...</p>
 <ul>
-<li><a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/OutputString.html">OutputString</a></li>
-<li><a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/OutputFile.html">OutputFile</a></li>
-</ul></article>
-    </section>
-
-
-
-
-
-
-        
-
-        <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Sep 22 2015 22:27:47 GMT+0000 (UTC)
-        </footer>
-    </div>
+<li><a href="http://christophehurpeau.github.io/nightingale/docs/OutputString.html">OutputString</a></li>
+<li><a href="http://christophehurpeau.github.io/nightingale/docs/OutputFile.html">OutputFile</a></li>
+</ul>
 </div>
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-<script src="scripts/main.js"></script>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.0)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
 </body>
 </html>

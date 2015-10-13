@@ -1,0 +1,139 @@
+{
+  "coverage": "46.66%",
+  "expectCount": 60,
+  "actualCount": 28,
+  "files": {
+    "src/handlers/ConsoleHandler.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/ConsoleLogger.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/Handler.js": {
+      "expectCount": 6,
+      "actualCount": 3,
+      "undocumentLines": [
+        16,
+        15,
+        17
+      ]
+    },
+    "src/layouts/LayoutDefault.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        6,
+        3
+      ]
+    },
+    "src/layouts/LayoutHTML.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        6,
+        3
+      ]
+    },
+    "src/LogLevel.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/Logger.js": {
+      "expectCount": 18,
+      "actualCount": 17,
+      "undocumentLines": [
+        15
+      ]
+    },
+    "src/outputs/OutputFile.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        8
+      ]
+    },
+    "src/outputs/OutputString.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        6,
+        10
+      ]
+    },
+    "src/handlers/StringHandler.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        6,
+        18
+      ]
+    },
+    "src/processors/WebProcessor.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        6,
+        3
+      ]
+    },
+    "src/formatters/formatterHtml.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        29
+      ]
+    },
+    "src/formatters/formatterANSI.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        24
+      ]
+    },
+    "src/formatters/formatterJSON.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/levels.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/formatters/formatterRaw.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/outputs/outputConsole.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    }
+  }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/formatters/formatterANSI.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/christophehurpeau/nightingale" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ConsoleLogger.js~ConsoleLogger.html">ConsoleLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Handler.js~Handler.html">Handler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LogLevel">LogLevel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-levels">levels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">formatters</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-format">format</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-style">style</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">handlers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/handlers/ConsoleHandler.js~ConsoleHandler.html">ConsoleHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/handlers/StringHandler.js~StringHandler.html">StringHandler</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layouts</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layouts/LayoutDefault.js~LayoutDefault.html">LayoutDefault</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layouts/LayoutHTML.js~LayoutHTML.html">LayoutHTML</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">outputs</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/outputs/OutputFile.js~OutputFile.html">OutputFile</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/outputs/OutputString.js~OutputString.html">OutputString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-write">write</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">processors</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/processors/WebProcessor.js~WebProcessor.html">WebProcessor</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/formatters/formatterANSI.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import LogLevel from &apos;../LogLevel&apos;;
+import ansi from &apos;ansi-styles&apos;;
+
+const levelToSymbol = {};
+levelToSymbol[LogLevel.TRACE] = &apos;&#x2022;&apos;;
+levelToSymbol[LogLevel.DEBUG] = &apos;&#x2022;&apos;;
+levelToSymbol[LogLevel.INFO] = &apos;&#x2192;&apos;;
+levelToSymbol[LogLevel.WARN] = &apos;&#x26A0;&apos;;
+levelToSymbol[LogLevel.ERROR] = &apos;&#x2716;&apos;;
+levelToSymbol[LogLevel.CRITICAL] = &apos;!&apos;;
+levelToSymbol[LogLevel.FATAL] = &apos;&#x203C;&apos;;
+levelToSymbol[LogLevel.EMERGENCY] = &apos;&#x203C;&apos;;
+
+const levelToStyles = {};
+levelToStyles[LogLevel.TRACE] = [&apos;gray&apos;];
+levelToStyles[LogLevel.DEBUG] = [&apos;gray&apos;];
+// levelToStyles[LogLevel.INFO] = [&apos;gray&apos;];
+levelToStyles[LogLevel.WARN] = [&apos;yellow&apos;];
+levelToStyles[LogLevel.ERROR] = [&apos;red&apos;, &apos;bold&apos;];
+levelToStyles[LogLevel.CRITICAL] = [&apos;red&apos;, &apos;bold&apos;];
+levelToStyles[LogLevel.FATAL] = [&apos;bgRed&apos;, &apos;white&apos;];
+levelToStyles[LogLevel.EMERGENCY] = [&apos;bgRed&apos;, &apos;white&apos;];
+
+export function style(styles, string) {
+    if (!styles.length || !string) {
+        return string;
+    }
+
+    return styles.reduce(function(string, styleName) {
+        let style = ansi[styleName];
+
+        if (!style) {
+            throw new Error(&apos;Unknown style: &apos; + styleName);
+        }
+
+        return style.open + string + style.close;
+    }, string);
+}
+
+function displayObject(object, contextStyles) {
+    const keys = Object.keys(object);
+
+    if (keys.length === 0) {
+        return;
+    }
+
+    return &apos;{ &apos; + keys.map(key =&gt; {
+        return key + &apos;: &apos; + this.style(contextStyles &amp;&amp; contextStyles[key], JSON.stringify(object[key]));
+    }).join(&apos;, &apos;) + &apos; }&apos;;
+}
+
+/**
+ * @param {Object} record
+ * @returns {string}
+ */
+export function format(record) {
+    let string = &apos;&apos;;
+    if (record.prefix) {
+        string += this.style([&apos;gray&apos;], record.prefix);
+    }
+
+    if (record.datetime) {
+        if (string.length !== 0) {
+            string += &apos; &apos;;
+        }
+
+        string += this.style([&apos;gray&apos;, &apos;bold&apos;], record.datetime.toTimeString().split(&apos; &apos;)[0]);
+        /* new Date().toFormat(&apos;HH24:MI:SS&apos;) */
+    }
+
+    let message = record.symbol || levelToSymbol[record.level];
+    let styles = record.styles || levelToStyles[record.level];
+
+    if (record.message) {
+        if (message &amp;&amp; message.length !== 0) {
+            message +=  &apos; &apos; + record.message;
+        } else {
+            message = record.message;
+        }
+    }
+
+    if (styles) {
+        message = this.style(styles, message);
+    }
+
+    if (string.length !== 0) {
+        string += &apos; &apos;;
+    }
+
+    string += message;
+
+    if (record.context) {
+        const stringObject = displayObject.call(this, record.context, record.contextStyles);
+
+        if (stringObject) {
+            if (string.length !== 0) {
+                string += &apos; &apos;;
+            }
+
+            string += stringObject;
+        }
+    }
+
+    if (record.extra) {
+        const stringObject = displayObject.call(this, record.extra);
+
+        if (stringObject) {
+            if (string.length !== 0) {
+                string += &apos; &apos;;
+            }
+
+            string += stringObject;
+        }
+    }
+
+    return string;
+}
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.0)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

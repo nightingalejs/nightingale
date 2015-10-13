@@ -57,7 +57,48 @@
 30
 31
 32
-33</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -87,37 +128,62 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * List of levels
+ *
+ * &lt;ul&gt;
+ * &lt;li&gt;ALL: Log everything. Not a level.&lt;/li&gt;
+ * &lt;li&gt;TRACE: Trace information&lt;/li&gt;
+ * &lt;li&gt;DEBUG: Detailed debug information&lt;/li&gt;
+ * &lt;li&gt;INFO: Normal but significant events&lt;/li&gt;
+ * &lt;li&gt;WARN: Exceptional occurrences that are not errors (Use of deprecated APIs)&lt;/li&gt;
+ * &lt;li&gt;WARNING: Alias for WARN&lt;/li&gt;
+ * &lt;li&gt;ERROR: Runtime errors that do not require immediate action but should be logged and monitored&lt;/li&gt;
+ * &lt;li&gt;CRITICAL: Critical conditions. Example: Application component unavailable, unexpected exception&lt;/li&gt;
+ * &lt;li&gt;FATAL: Action must be taken immediately. Example: Entire website down, database unavailable, etc
+ *          This should trigger the SMS alerts and wake you up&lt;/li&gt;
+ * &lt;li&gt;ALERT: Alias for FATAL&lt;/li&gt;
+ * &lt;li&gt;EMERGENCY: Emergency: system is unusable&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ */
+"use strict";
 &nbsp;
 var _Object$freeze = require("babel-runtime/core-js/object/freeze").default;
 &nbsp;
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 const LogLevel = _Object$freeze({
-    /** @type {Number} Trace information */
-    TRACE: 10,
-    /** @type {Number} Detailed debug information */
-    DEBUG: 100,
-    /** @type {Number} Normal but significant events */
-    INFO: 200,
-    /** @type {Number} Exceptional occurrences that are not errors (Use of deprecated APIs) */
-    WARN: 300,
-    /** @type {Number} Alias for WARN */
-    WARNING: 300,
-    /** @type {Number} Runtime errors that do not require immediate action but should be logged and monitored */
-    ERROR: 400,
-    /** @type {Number} Critical conditions. Example: Application component unavailable, unexpected exception */
-    CRITICAL: 500,
-    /** @type {Number} Action must be taken immediately. Example: Entire website down, database unavailable, etc
-      *                 This should trigger the SMS alerts and wake you up */
-    FATAL: 550,
-    /** @type {Number} Alias for FATAL */
-    ALERT: 550,
-    /** @type {Number} Emergency: system is unusable */
-    EMERGENCY: 600
+  /** @type {Number} Log everything. Not a level. */
+  ALL: 0,
+&nbsp;
+  /** @type {Number} Trace information */
+  TRACE: 10,
+  /** @type {Number} Detailed debug information */
+  DEBUG: 100,
+  /** @type {Number} Normal but significant events */
+  INFO: 200,
+  /** @type {Number} Exceptional occurrences that are not errors (Use of deprecated APIs) */
+  WARN: 300,
+  /** @type {Number} Alias for WARN */
+  WARNING: 300,
+  /** @type {Number} Runtime errors that do not require immediate action but should be logged and monitored */
+  ERROR: 400,
+  /** @type {Number} Critical conditions. Example: Application component unavailable, unexpected exception */
+  CRITICAL: 500,
+  /** @type {Number} Action must be taken immediately. Example: Entire website down, database unavailable, etc
+    *                 This should trigger the SMS alerts and wake you up */
+  FATAL: 550,
+  /** @type {Number} Alias for FATAL */
+  ALERT: 550,
+  /** @type {Number} Emergency: system is unusable */
+  EMERGENCY: 600
 });
 exports.default = LogLevel;
 module.exports = exports.default;
@@ -126,7 +192,7 @@ module.exports = exports.default;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Sep 22 2015 22:27:47 GMT+0000 (UTC)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 13 2015 20:32:44 GMT+0000 (UTC)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

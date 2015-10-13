@@ -419,7 +419,26 @@
 392
 393
 394
-395</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -445,7 +464,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -480,6 +509,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -837,9 +875,19 @@ var _LogLevel = require('./LogLevel');
 &nbsp;
 var _LogLevel2 = _interopRequireDefault(_LogLevel);
 &nbsp;
+/**
+ * Interface that allows you to log records.
+ * This records are treated by handlers
+ */
 /** @class Logger 
 * @param handlers */
 let Logger = (function () {
+    /**
+     * Create a new Logger
+     *
+     * @param {Handler[]} handlers
+     */
+&nbsp;
     function Logger(handlers) {
         var _this = this;
 &nbsp;
@@ -875,12 +923,21 @@ let Logger = (function () {
 <span class="cstat-no" title="statement not covered" >            this.output.write(message, logLevel);</span>
 <span class="cstat-no" title="statement not covered" >            return this;</span>
         }
-    }, {
-        key: 'addRecord',
-        /** @memberof Logger 
+&nbsp;
+        /**
+         * Handle a record
+         *
+         * Use this only if you know what you are doing.
+         *
+         * @param {Object} record
+         
+        * @memberof Logger 
         * @instance 
         * @method addRecord 
-        * @param record */value: function addRecord(record) {
+        * @param record */
+    }, {
+        key: 'addRecord',
+        value: function addRecord(record) {
             for (let i = 0, length = this.handlers.length; i &lt; length; i++) {
                 let handler = this.handlers[i];
                 <span class="missing-if-branch" title="if path not taken" >I</span>if (handler.handle(record) === false) {
@@ -894,8 +951,8 @@ let Logger = (function () {
          *
          * @param {String} message
          * @param {Object} context
-         * @param {int=} logLevel
-         * @param {Object=} options
+         * @param {int} [logLevel]
+         * @param {Object} [options]
          * @return {Logger}
          
         * @memberof Logger 
@@ -932,7 +989,7 @@ let Logger = (function () {
          * Set the logger prefix
          *
          * @param {String} prefix
-         * @param {*} styles
+         * @param {*} [styles]
          
         * @memberof Logger 
         * @instance 
@@ -949,8 +1006,8 @@ let Logger = (function () {
          * Log an debug message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -969,8 +1026,8 @@ let Logger = (function () {
          * Log an info message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -989,8 +1046,8 @@ let Logger = (function () {
          * Log an warn message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1009,8 +1066,8 @@ let Logger = (function () {
          * Log an error message
          *
          * @param {String|Error} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1029,8 +1086,8 @@ let Logger = (function () {
          * Log an alert message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1049,8 +1106,8 @@ let Logger = (function () {
          * Log an fatal message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1069,8 +1126,8 @@ let Logger = (function () {
          * Log an debug message
          *
          * @param {*} value
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1091,8 +1148,8 @@ let Logger = (function () {
          *
          * @param {String} varName
          * @param {*} varValue
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1113,8 +1170,8 @@ let Logger = (function () {
          * Log an sucess message
          *
          * @param {String} message
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
          * @return {Logger}
          
         * @memberof Logger 
@@ -1165,8 +1222,8 @@ let Logger = (function () {
         *
         * @param {Number=} time return of previous call to time()
         * @param {string} name timer name
-         * @param {Object=} context
-         * @param {Object=} contextStyles
+         * @param {Object} [context]
+         * @param {Object} [contextStyles]
         
         * @memberof Logger 
         * @instance 
@@ -1212,7 +1269,7 @@ module.exports = exports.default;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Sep 22 2015 22:27:47 GMT+0000 (UTC)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 13 2015 20:32:44 GMT+0000 (UTC)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>
