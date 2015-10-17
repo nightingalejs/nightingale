@@ -62,7 +62,7 @@
 <pre><code><code class="source-code prettyprint">npm install --save nightingale</code>
 </code></pre><h3 id="how-to-use">How to use</h3>
 <pre><code class="lang-js"><code class="source-code prettyprint">import { Logger, LogLevel } from &apos;nightingale&apos;;
-import ConsoleHandler from &apos;nightingale/handlers/ConsoleHandler&apos;;
+import ConsoleHandler from &apos;nightingale/lib/handlers/ConsoleHandler&apos;;
 
 const logger = new Logger([ new ConsoleHandler(LogLevel.ALL) ]);
 logger.setPrefix(&apos;[app]&apos;);
