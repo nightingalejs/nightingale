@@ -552,9 +552,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/logger.js~logger#inspect",
-    "class/src/Logger.js~Logger.html#instance-method-inspect",
-    "src/Logger.js~Logger#inspect",
+    "src/logger.js~logger#inspectvalue",
+    "class/src/Logger.js~Logger.html#instance-method-inspectValue",
+    "src/Logger.js~Logger#inspectValue",
     "method"
   ],
   [
