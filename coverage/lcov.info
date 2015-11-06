@@ -404,6 +404,7 @@ BRDA:45,1,0,0
 BRDA:45,1,1,1
 BRDA:45,2,0,1
 BRDA:45,2,1,1
+BRDA:45,2,2,1
 BRDA:54,3,0,0
 BRDA:54,3,1,2
 BRDA:71,4,0,8
@@ -442,8 +443,8 @@ BRDA:137,20,0,0
 BRDA:137,20,1,8
 BRDA:138,21,0,0
 BRDA:138,21,1,0
-BRF:42
-BRH:22
+BRF:43
+BRH:23
 end_of_record
 TN:
 SF:/home/ubuntu/nightingale/lib/outputs/OutputString.js
@@ -514,6 +515,7 @@ BRDA:40,1,0,0
 BRDA:40,1,1,1
 BRDA:40,2,0,1
 BRDA:40,2,1,1
+BRDA:40,2,2,1
 BRDA:58,3,0,0
 BRDA:58,3,1,0
 BRDA:62,4,0,0
@@ -524,8 +526,8 @@ BRDA:71,6,0,0
 BRDA:71,6,1,0
 BRDA:75,7,0,0
 BRDA:75,7,1,0
-BRF:14
-BRH:3
+BRF:15
+BRH:4
 end_of_record
 TN:
 SF:/home/ubuntu/nightingale/lib/formatters/formatterJSON.js
