@@ -71,7 +71,12 @@ export default class ConsoleHandler extends Handler {
      */
     constructor(minLevel) {
         if (typeof minLevel === &apos;string&apos;) {
-            minLevel = debugValues.indexOf(minLevel) !== -1 ? LogLevel.ALL : LogLevel.WARN;
+            let debug = debugValues[0] === &apos;*&apos; || debugValues.indexOf(minLevel) !== -1;
+            if (!debug &amp;&amp; minLevel.includes(&apos;.&apos;)) {
+                debug = debugValues.indexOf(minLevel.split(&apos;.&apos;)[0]) !== -1;
+            }
+
+            minLevel = debug ? LogLevel.ALL : LogLevel.WARN;
         }
 
         super(
