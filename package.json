@@ -30,7 +30,7 @@
     "ansi-styles": "^2.1.0"
   },
   "devDependencies": {
-    "karma": "^0.13.10",
+    "karma": "^0.13.17",
     "karma-chrome-launcher": "^0.2.1",
     "karma-firefox-launcher": "^0.1.6",
     "karma-ievms": "^0.1.0",
