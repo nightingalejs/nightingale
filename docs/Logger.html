@@ -34,9 +34,66 @@
     </div>
     <ul class="list">
     
+        <li class="item" data-name="BrowserConsoleHandler">
+            <span class="title">
+                <a href="BrowserConsoleHandler.html">BrowserConsoleHandler</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="BrowserConsoleLogger">
+            <span class="title">
+                <a href="BrowserConsoleLogger.html">BrowserConsoleLogger</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="ConsoleHandler">
             <span class="title">
                 <a href="ConsoleHandler.html">ConsoleHandler</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="ConsoleLogger">
+            <span class="title">
+                <a href="ConsoleLogger.html">ConsoleLogger</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -69,6 +126,29 @@
             <span class="subtitle">Methods</span>
             
                 <li data-name="Handler#handle"><a href="Handler.html#handle">handle</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="LayoutBrowserConsole">
+            <span class="title">
+                <a href="LayoutBrowserConsole.html">LayoutBrowserConsole</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="LayoutBrowserConsole#format"><a href="LayoutBrowserConsole.html#format">format</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -149,7 +229,7 @@
             
                 <li data-name="Logger#info"><a href="Logger.html#info">info</a></li>
             
-                <li data-name="Logger#inspect"><a href="Logger.html#inspect">inspect</a></li>
+                <li data-name="Logger#inspectValue"><a href="Logger.html#inspectValue">inspectValue</a></li>
             
                 <li data-name="Logger#inspectVar"><a href="Logger.html#inspectVar">inspectVar</a></li>
             
@@ -196,43 +276,12 @@
             </ul>
         </li>
     
-        <li class="item" data-name="OutputString">
-            <span class="title">
-                <a href="OutputString.html">OutputString</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="OutputString#string"><a href="OutputString.html#string">string</a></li>
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="OutputString#write"><a href="OutputString.html#write">write</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="StringHandler">
             <span class="title">
                 <a href="StringHandler.html">StringHandler</a>
                 
             </span>
             <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="StringHandler#string"><a href="StringHandler.html#string">string</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -284,6 +333,9 @@
     Logger
     </h2>
     
+        <div class="class-description">Interface that allows you to log records.
+This records are treated by handlers</div>
+    
 </header>  
 
 <article>
@@ -301,7 +353,7 @@
     
         
         <div class="tag-source">
-            Logger.js, line 25
+            Logger.js, line 26
         </div>
         
     </div>
@@ -310,6 +362,10 @@
 </dt>
 <dd>
     
+    
+    <div class="description">
+        Create a new Logger
+    </div>
     
 
     
@@ -343,6 +399,11 @@
             
             
             <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="Handler.html">Handler</a>></span>
+
+
             
             </td>
             
@@ -426,7 +487,7 @@
     
         
         <div class="tag-source">
-            Logger.js, line 65
+            Logger.js, line 63
         </div>
         
     </div>
@@ -435,6 +496,12 @@
 </dt>
 <dd>
     
+    
+    <div class="description">
+        Handle a record
+
+Use this only if you know what you are doing.
+    </div>
     
 
     
@@ -468,6 +535,11 @@
             
             
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
             
@@ -528,12 +600,12 @@
     <div class="nameContainer">
         <h4 class="name" id="alert">
             
-            alert<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            alert<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 213
+            Logger.js, line 169
         </div>
         
     </div>
@@ -581,7 +653,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -651,75 +723,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -807,12 +810,12 @@
     <div class="nameContainer">
         <h4 class="name" id="debug">
             
-            debug<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            debug<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 133
+            Logger.js, line 120
         </div>
         
     </div>
@@ -860,7 +863,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -930,75 +933,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -1086,12 +1020,12 @@
     <div class="nameContainer">
         <h4 class="name" id="error">
             
-            error<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            error<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 193
+            Logger.js, line 156
         </div>
         
     </div>
@@ -1139,7 +1073,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 |
 
 <span class="param-type">Error</span>
@@ -1212,75 +1146,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -1368,12 +1233,12 @@
     <div class="nameContainer">
         <h4 class="name" id="fatal">
             
-            fatal<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            fatal<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 233
+            Logger.js, line 181
         </div>
         
     </div>
@@ -1421,7 +1286,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -1491,75 +1356,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -1647,12 +1443,12 @@
     <div class="nameContainer">
         <h4 class="name" id="info">
             
-            info<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            info<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 153
+            Logger.js, line 132
         </div>
         
     </div>
@@ -1700,7 +1496,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -1770,75 +1566,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -1924,14 +1651,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="inspect">
+        <h4 class="name" id="inspectValue">
             
-            inspect<span class="signature">(value, <span class="optional">context</span>, <span class="optional">contextStyles</span>, value, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            inspectValue<span class="signature">(value, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 253
+            Logger.js, line 193
         </div>
         
     </div>
@@ -1942,7 +1669,7 @@
     
     
     <div class="description">
-        Log an debug message
+        Log an inspected value
     </div>
     
 
@@ -2049,75 +1776,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -2205,12 +1863,12 @@
     <div class="nameContainer">
         <h4 class="name" id="inspectVar">
             
-            inspectVar<span class="signature">(varName, varValue, <span class="optional">context</span>, <span class="optional">contextStyles</span>, varName, varValue, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            inspectVar<span class="signature">(varName, varValue, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 274
+            Logger.js, line 209
         </div>
         
     </div>
@@ -2258,7 +1916,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -2365,98 +2023,6 @@
         </tr>
 	
 	
-	
-        <tr>
-            
-                <td class="name"><code>varName</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>varValue</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
 	</tbody>
 </table>
     
@@ -2535,12 +2101,12 @@
     <div class="nameContainer">
         <h4 class="name" id="log">
             
-            log<span class="signature">(message, context, <span class="optional">logLevel</span>, <span class="optional">options</span>, message, context, <span class="optional">logLevel</span>, <span class="optional">options</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            log<span class="signature">(message, context, <span class="optional">logLevel</span>, <span class="optional">options</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 77
+            Logger.js, line 81
         </div>
         
     </div>
@@ -2588,7 +2154,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -2695,102 +2261,6 @@
         </tr>
 	
 	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>logLevel</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
 	</tbody>
 </table>
     
@@ -2869,12 +2339,12 @@
     <div class="nameContainer">
         <h4 class="name" id="setPrefix">
             
-            setPrefix<span class="signature">(prefix, styles, prefix, styles)</span>
+            setPrefix<span class="signature">(prefix, <span class="optional">styles</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 116
+            Logger.js, line 108
         </div>
         
     </div>
@@ -2922,7 +2392,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -2931,6 +2401,11 @@
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 </td>
         </tr>
@@ -2955,41 +2430,12 @@
             
             <td class="description last">
                 
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>prefix</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>styles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
                 
                 </td>
         </tr>
@@ -3044,12 +2490,12 @@
     <div class="nameContainer">
         <h4 class="name" id="success">
             
-            success<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            success<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 297
+            Logger.js, line 222
         </div>
         
     </div>
@@ -3097,7 +2543,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -3167,75 +2613,6 @@
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -3323,12 +2700,12 @@
     <div class="nameContainer">
         <h4 class="name" id="time">
             
-            time<span class="signature">(name, name)</span>
+            time<span class="signature">(name)</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 321
+            Logger.js, line 236
         </div>
         
     </div>
@@ -3377,7 +2754,7 @@ in the timers map
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -3388,24 +2765,6 @@ in the timers map
             <td class="description last">
                 
                 timer name</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
         </tr>
 	
 	
@@ -3458,12 +2817,12 @@ in the timers map
     <div class="nameContainer">
         <h4 class="name" id="timeEnd">
             
-            timeEnd<span class="signature">(<span class="optional">time</span>, name, <span class="optional">context</span>, <span class="optional">contextStyles</span>, time, name, context, contextStyles)</span>
+            timeEnd<span class="signature">(<span class="optional">time</span>, name, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 345
+            Logger.js, line 259
         </div>
         
     </div>
@@ -3514,7 +2873,7 @@ and deletes the original record
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">number</span>
 
 
             
@@ -3544,7 +2903,7 @@ and deletes the original record
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -3614,98 +2973,6 @@ and deletes the original record
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -3764,12 +3031,12 @@ and deletes the original record
     <div class="nameContainer">
         <h4 class="name" id="warn">
             
-            warn<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>, message, context, contextStyles)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            warn<span class="signature">(message, <span class="optional">context</span>, <span class="optional">contextStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 173
+            Logger.js, line 144
         </div>
         
     </div>
@@ -3817,7 +3084,7 @@ and deletes the original record
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -3887,75 +3154,6 @@ and deletes the original record
                 
                     
                         <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>contextStyles</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
                     
                     
                         
@@ -4043,12 +3241,12 @@ and deletes the original record
     <div class="nameContainer">
         <h4 class="name" id="write">
             
-            write<span class="signature">(message, logLevel, message, logLevel)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+            write<span class="signature">(message, logLevel)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
         </h4>
     
         
         <div class="tag-source">
-            Logger.js, line 44
+            Logger.js, line 51
         </div>
         
     </div>
@@ -4096,7 +3294,7 @@ and deletes the original record
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
             
@@ -4119,45 +3317,9 @@ and deletes the original record
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#string">string</a></span>
 
 
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>logLevel</code></td>
-            
-            
-            <td class="type">
             
             </td>
             
@@ -4258,7 +3420,7 @@ and deletes the original record
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Sep 22 2015 22:27:47 GMT+0000 (UTC)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.0-dev</a> on Tue Jan 26 2016 10:06:56 GMT+0000 (UTC)
         </footer>
     </div>
 </div>

@@ -34,9 +34,66 @@
     </div>
     <ul class="list">
     
+        <li class="item" data-name="BrowserConsoleHandler">
+            <span class="title">
+                <a href="BrowserConsoleHandler.html">BrowserConsoleHandler</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="BrowserConsoleLogger">
+            <span class="title">
+                <a href="BrowserConsoleLogger.html">BrowserConsoleLogger</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="ConsoleHandler">
             <span class="title">
                 <a href="ConsoleHandler.html">ConsoleHandler</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="ConsoleLogger">
+            <span class="title">
+                <a href="ConsoleLogger.html">ConsoleLogger</a>
                 
             </span>
             <ul class="members itemMembers">
@@ -69,6 +126,29 @@
             <span class="subtitle">Methods</span>
             
                 <li data-name="Handler#handle"><a href="Handler.html#handle">handle</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="LayoutBrowserConsole">
+            <span class="title">
+                <a href="LayoutBrowserConsole.html">LayoutBrowserConsole</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="LayoutBrowserConsole#format"><a href="LayoutBrowserConsole.html#format">format</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -149,7 +229,7 @@
             
                 <li data-name="Logger#info"><a href="Logger.html#info">info</a></li>
             
-                <li data-name="Logger#inspect"><a href="Logger.html#inspect">inspect</a></li>
+                <li data-name="Logger#inspectValue"><a href="Logger.html#inspectValue">inspectValue</a></li>
             
                 <li data-name="Logger#inspectVar"><a href="Logger.html#inspectVar">inspectVar</a></li>
             
@@ -196,43 +276,12 @@
             </ul>
         </li>
     
-        <li class="item" data-name="OutputString">
-            <span class="title">
-                <a href="OutputString.html">OutputString</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="OutputString#string"><a href="OutputString.html#string">string</a></li>
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="OutputString#write"><a href="OutputString.html#write">write</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="StringHandler">
             <span class="title">
                 <a href="StringHandler.html">StringHandler</a>
                 
             </span>
             <ul class="members itemMembers">
-            
-            <span class="subtitle">Members</span>
-            
-                <li data-name="StringHandler#string"><a href="StringHandler.html#string">string</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -284,6 +333,10 @@
     Handler
     </h2>
     
+        <div class="class-description">Abstract class that handles a record.
+
+Has a min level to discard record lower that this level.</div>
+    
 </header>  
 
 <article>
@@ -301,7 +354,7 @@
     
         
         <div class="tag-source">
-            Handler.js, line 17
+            Handler.js, line 23
         </div>
         
     </div>
@@ -344,6 +397,11 @@
             
             <td class="type">
             
+                
+<span class="param-type">int</span>
+
+
+            
             </td>
             
             
@@ -362,6 +420,11 @@
             
             <td class="type">
             
+                
+<span class="param-type">Layout</span>
+
+
+            
             </td>
             
             
@@ -379,6 +442,11 @@
             
             
             <td class="type">
+            
+                
+<span class="param-type">Output</span>
+
+
             
             </td>
             
@@ -457,12 +525,12 @@
     <div class="nameContainer">
         <h4 class="name" id="handle">
             
-            handle<span class="signature">(record, record)</span>
+            handle<span class="signature">(record)</span>
         </h4>
     
         
         <div class="tag-source">
-            Handler.js, line 44
+            Handler.js, line 46
         </div>
         
     </div>
@@ -509,24 +577,6 @@
 <span class="param-type">Object</span>
 
 
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>record</code></td>
-            
-            
-            <td class="type">
             
             </td>
             
@@ -598,7 +648,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Sep 22 2015 22:27:47 GMT+0000 (UTC)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.0-dev</a> on Tue Jan 26 2016 10:06:56 GMT+0000 (UTC)
         </footer>
     </div>
 </div>

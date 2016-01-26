@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.91% </span>
+        <span class="strong">48% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/22</span>
+        <span class='fraction'>12/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26.67% </span>
+        <span class="strong">36.84% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/15</span>
+        <span class='fraction'>7/19</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">66.67% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>2/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.91% </span>
+        <span class="strong">43.48% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/22</span>
+        <span class='fraction'>10/23</span>
       </div>
     </div>
   </div>
@@ -105,57 +105,23 @@
 60
 61
 62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+63</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,8 +131,6 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,67 +169,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.style = style;
 exports.format = format;
-const htmlStyles = {
-    // text style
-    bold: 'font-weight: bold',
-    italic: 'font-style: italic',
-    underline: 'text-decoration: underline',
-    inverse: 'unicode-bidi: bidi-override; direction: rtl',
-    strikethrough: 'text-decoration: line-through',
 &nbsp;
-    black: 'color: black',
-    red: 'color: red',
-    green: 'color: green',
-    yellow: 'color: yellow',
-    blue: 'color: #4682B4',
-    magenta: 'color: magenta',
-    cyan: 'color: cyan',
-    white: 'color: white',
-    gray: 'color: gray',
+var _styleToHtmlStyle = require('./_styleToHtmlStyle');
 &nbsp;
-    bgBlack: 'background: black',
-    bgRed: 'background: red',
-    bgGreen: 'background: green',
-    bgYellow: 'background: yellow',
-    bgBlue: 'background: blue',
-    bgMagenta: 'background: magenta',
-    bgCyan: 'background: cyan',
-    bgWhite: 'background: white'
-};
+var _styleToHtmlStyle2 = _interopRequireDefault(_styleToHtmlStyle);
 &nbsp;
-/** @function 
-* @param styles 
-* @param string */
-function style(styles, string) {
+/**
+ * @function
+ * @param obj
+*/
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj };</span> }
+&nbsp;
+/**
+ * @function
+ * @param styles
+ * @param string
+*/function style(styles, string) {
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!styles || !styles.length || !string) {
 <span class="cstat-no" title="statement not covered" >        return string;</span>
     }
 &nbsp;
-    return '&lt;span style="' + styles.map( /** @function 
-                                         * @param styleName */function (styleName) {
-        return htmlStyles[styleName];
-    }).join('; ') + '"&gt;' + string + '&lt;/span&gt;';
+    return `&lt;span style="${ styles.map(styleName =&gt; _styleToHtmlStyle2.default[styleName]).join('; ') }"&gt;${ string }&lt;/span&gt;`;
 }
 &nbsp;
 /**
  * @param {Object} record
  * @returns {string}
  */
-/** @function 
-* @param record */
-<span class="fstat-no" title="function not covered" >function format(record) {</span>
+/**
+ * @function
+ * @param record
+*/<span class="fstat-no" title="function not covered" >function format(record) {</span>
 <span class="cstat-no" title="statement not covered" >    let string = '';</span>
 <span class="cstat-no" title="statement not covered" >    if (record.prefix) {</span>
-<span class="cstat-no" title="statement not covered" >        string += record.prefix + ' ';</span>
+<span class="cstat-no" title="statement not covered" >        string += `${ record.prefix } `;</span>
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (record.datetime) {</span>
-<span class="cstat-no" title="statement not covered" >        string += this.style('bold', record.datetime.toFormat('HH24:MI:SS') + ' ');</span>
+<span class="cstat-no" title="statement not covered" >        string += this.style('bold', `${ record.datetime.toFormat('HH24:MI:SS') } `);</span>
         /* toTimeString().split(' ')[0] */
     }
 &nbsp;
@@ -289,7 +235,7 @@ function style(styles, string) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 07 2015 13:50:06 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 26 2016 10:06:56 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
