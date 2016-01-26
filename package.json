@@ -41,6 +41,6 @@
     "mocha": "^2.3.4",
     "phantomjs": "^1.9.19",
     "proclaim": "^3.4.0",
-    "springbokjs-library": "^13.1.1"
+    "springbokjs-library": "^13.2.1"
   }
 }
