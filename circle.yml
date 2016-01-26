@@ -13,7 +13,6 @@ dependencies:
   override:
     - rm -Rf node_modules
     - npm prune && npm install --no-spin
-    - npm install codeclimate-test-reporter xunit-file
 
 test:
   pre:

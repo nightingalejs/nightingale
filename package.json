@@ -31,6 +31,7 @@
     "jsdoc": "github:jsdoc3/jsdoc#3dbb94f157290e8a0cbc79cb3580130e8e2c4534"
   },
   "devDependencies": {
+    "coveralls": "^2.11.6",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
     "karma-firefox-launcher": "^0.1.7",
@@ -41,6 +42,7 @@
     "mocha": "^2.3.4",
     "phantomjs": "^1.9.19",
     "proclaim": "^3.4.0",
-    "springbokjs-library": "^13.3.0"
+    "springbokjs-library": "^13.3.0",
+    "xunit-file": "0.0.9"
   }
 }
