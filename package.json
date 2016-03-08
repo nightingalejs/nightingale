@@ -34,7 +34,7 @@
     "coveralls": "^2.11.8",
     "eslint": "^1.10.3",
     "eslint-config-partridge": "^3.0.1",
-    "karma": "^0.13.19",
+    "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
     "karma-firefox-launcher": "^0.1.7",
     "karma-ievms": "^0.1.0",
