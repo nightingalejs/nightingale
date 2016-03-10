@@ -44,7 +44,7 @@
     "mocha": "^2.4.5",
     "phantomjs": "^1.9.19",
     "proclaim": "^3.4.0",
-    "springbokjs-library": "^15.0.0",
+    "springbokjs-library": "^16.0.0",
     "xunit-file": "0.0.9"
   }
 }
