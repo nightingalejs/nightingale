@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.8",
-    "eslint": "^1.10.3",
+    "eslint": "^2.6.0",
     "eslint-config-partridge": "^3.0.1",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
