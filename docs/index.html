@@ -34,71 +34,6 @@
     </div>
     <ul class="list">
     
-        <li class="item" data-name="Logger">
-            <span class="title">
-                <a href="Logger.html">Logger</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Logger#addRecord"><a href="Logger.html#addRecord">addRecord</a></li>
-            
-                <li data-name="Logger#alert"><a href="Logger.html#alert">alert</a></li>
-            
-                <li data-name="Logger#debug"><a href="Logger.html#debug">debug</a></li>
-            
-                <li data-name="Logger#debugFail"><a href="Logger.html#debugFail">debugFail</a></li>
-            
-                <li data-name="Logger#debugSuccess"><a href="Logger.html#debugSuccess">debugSuccess</a></li>
-            
-                <li data-name="Logger#enter"><a href="Logger.html#enter">enter</a></li>
-            
-                <li data-name="Logger#error"><a href="Logger.html#error">error</a></li>
-            
-                <li data-name="Logger#exit"><a href="Logger.html#exit">exit</a></li>
-            
-                <li data-name="Logger#fail"><a href="Logger.html#fail">fail</a></li>
-            
-                <li data-name="Logger#fatal"><a href="Logger.html#fatal">fatal</a></li>
-            
-                <li data-name="Logger#info"><a href="Logger.html#info">info</a></li>
-            
-                <li data-name="Logger#infoFail"><a href="Logger.html#infoFail">infoFail</a></li>
-            
-                <li data-name="Logger#infoSuccess"><a href="Logger.html#infoSuccess">infoSuccess</a></li>
-            
-                <li data-name="Logger#inspectValue"><a href="Logger.html#inspectValue">inspectValue</a></li>
-            
-                <li data-name="Logger#inspectVar"><a href="Logger.html#inspectVar">inspectVar</a></li>
-            
-                <li data-name="Logger#log"><a href="Logger.html#log">log</a></li>
-            
-                <li data-name="Logger#success"><a href="Logger.html#success">success</a></li>
-            
-                <li data-name="Logger#time"><a href="Logger.html#time">time</a></li>
-            
-                <li data-name="Logger#timeEnd"><a href="Logger.html#timeEnd">timeEnd</a></li>
-            
-                <li data-name="Logger#trace"><a href="Logger.html#trace">trace</a></li>
-            
-                <li data-name="Logger#warn"><a href="Logger.html#warn">warn</a></li>
-            
-                <li data-name="Logger#wrap"><a href="Logger.html#wrap">wrap</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
     </ul>
 </div>
     <div class="main">
@@ -125,9 +60,9 @@
 
     <section>
         <article class="readme"><h1>nightingale <a target="_blank" href="https://npmjs.org/package/nightingale"><img src="https://img.shields.io/npm/v/nightingale.svg?style=flat-square" alt="NPM version"></a></h1><p>Logger for browser and node</p>
-<p><a target="_blank" href="https://circleci.com/gh/christophehurpeau/nightingale"><img src="https://img.shields.io/circleci/project/christophehurpeau/nightingale/master.svg?style=flat-square" alt="Build Status"></a> <a target="_blank" href="http://christophehurpeau.github.io/nightingale/coverage/lcov-report/"><img src="https://img.shields.io/coveralls/christophehurpeau/nightingale/master.svg?style=flat-square" alt="Coverage"></a></p>
+<p><a target="_blank" href="https://circleci.com/gh/nightingalejs/nightingale"><img src="https://img.shields.io/circleci/project/nightingalejs/nightingale/master.svg?style=flat-square" alt="Build Status"></a> <a target="_blank" href="http://nightingalejs.github.io/nightingale/coverage/lcov-report/"><img src="https://img.shields.io/coveralls/nightingalejs/nightingale/master.svg?style=flat-square" alt="Coverage"></a></p>
 <p>The nightingale is a bird best known for its powerful and beautiful song.</p>
-<p>See the <a target="_blank" href="http://christophehurpeau.github.io/nightingale/docs/">API</a></p>
+<p>See the <a target="_blank" href="http://nightingalejs.github.io/nightingale-logger/docs/Logger.html">Logger API</a></p>
 <h2>Install</h2><pre class="prettyprint source"><code>npm install --save nightingale
 npm install --save nightingale-console # for console handler</code></pre><h2>How to use</h2><h3>In an application</h3><pre class="prettyprint source lang-js"><code>import Logger, { configure, levels } from 'nightingale';
 import ConsoleHandler from 'nightingale-console';
@@ -159,7 +94,7 @@ logger.debug('This is a log'); // will not be displayed
 const logger = new Logger('app.server');
 logger.debug('This is a log'); // will be displayed</code></pre><p><code>app.server</code> overrides the <code>app</code> config. <a target="_blank" href="https://www.npmjs.com/package/minimatch">minimatch</a> is used.
 You can configure several handlers with different <code>levels</code>, like console and slack.</p>
-<h3>In an library</h3><pre class="prettyprint source lang-js"><code>import Logger from 'nightingale';
+<h3>In an library</h3><pre class="prettyprint source lang-js"><code>import Logger from 'nightingale-logger';
 
 const logger = new Logger('mylib');
 
@@ -229,7 +164,13 @@ class MyCustomLogger extends Logger {
     }
 }
 
-const logger = new MyCustomLogger('app');</code></pre></article>
+const logger = new MyCustomLogger('app');</code></pre><h2>Global processors</h2><pre class="prettyprint source lang-js"><code>import { addGlobalProcessor } from 'nightingale';
+import errorProcessor from 'nightingale-error-processor';
+
+addGlobalProcessor(errorProcessor);</code></pre><h2>Global handlers</h2><pre class="prettyprint source lang-js"><code>import { addGlobalHandler, levels } from 'nightingale';
+import ErrorHandler from 'nightingale-sentry';
+
+addGlobalHandler(new ErrorHandler(levels.ERROR));</code></pre></article>
     </section>
 
 
@@ -240,7 +181,7 @@ const logger = new MyCustomLogger('app');</code></pre></article>
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Apr 24 2016 21:13:17 GMT+0000 (UTC)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon May 02 2016 14:55:08 GMT+0000 (UTC)
         </footer>
     </div>
 </div>
