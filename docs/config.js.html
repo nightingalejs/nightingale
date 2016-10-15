@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>config.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addConfig">addConfig</a></li><li><a href="global.html#addGlobalHandler">addGlobalHandler</a></li><li><a href="global.html#addGlobalProcessor">addGlobalProcessor</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#handleConfig">handleConfig</a></li><li><a href="global.html#listenUnhandledErrors">listenUnhandledErrors</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">config.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+exports.__esModule = true;
+exports.configure = configure;
+exports.addConfig = addConfig;
+exports.addGlobalProcessor = addGlobalProcessor;
+exports.addGlobalHandler = addGlobalHandler;
+
+var _minimatch = require('minimatch');
+
+if (!global.__NIGHTINGALE_CONFIG) {
+  global.__NIGHTINGALE_CONFIG = [];
+  global.__NIGHTINGALE_GLOBAL_PROCESSORS = [];
+  global.__NIGHTINGALE_GLOBAL_HANDLERS = [];
+  global.__NIGHTINGALE_LOGGER_MAP_CACHE = new Map();
+  global.__NIGHTINGALE_CONFIG_DEFAULT = {
+    handlers: [],
+    processors: []
+  };
+}
+
+function clearCache() {
+  global.__NIGHTINGALE_LOGGER_MAP_CACHE.clear();
+}
+
+/**
+ * @param {Config} config
+*/function handleConfig(config) {
+  if (config.key) {
+    if (config.patterns) {
+      throw new Error('Cannot have key and patterns for the same config');
+    }
+    config.patterns = [config.key];
+    delete config.key;
+  }
+
+  if (config.pattern) {
+    if (config.patterns) {
+      throw new Error('Cannot have pattern and patterns for the same config');
+    }
+    config.patterns = [config.pattern];
+    delete config.pattern;
+  }
+
+  if (config.handler) {
+    if (config.handlers) {
+      throw new Error('Cannot have handler and handlers for the same config');
+    }
+    config.handlers = [config.handler];
+    delete config.handler;
+  }
+
+  if (config.patterns) {
+    config.minimatchPatterns = config.patterns.map(pattern => new _minimatch.Minimatch(pattern));
+  }
+
+  return config;
+}
+
+/**
+ * @param config
+*/function configure(config) {
+  if (global.__NIGHTINGALE_CONFIG.length !== 0) {
+    // eslint-disable-next-line no-console
+    console.log('nightingale: warning: config overridden');
+  }
+
+  clearCache();
+  global.__NIGHTINGALE_CONFIG = [];
+  global.__NIGHTINGALE_CONFIG_DEFAULT = null;
+
+  config.reverse().forEach(config => {
+    config = handleConfig(config);
+
+    if (config.patterns) {
+      global.__NIGHTINGALE_CONFIG.push(config);
+    } else {
+      if (global.__NIGHTINGALE_CONFIG_DEFAULT) {
+        throw new Error('Config cannot contains more than 1 default declaration');
+      }
+
+      global.__NIGHTINGALE_CONFIG_DEFAULT = config;
+    }
+  });
+
+  if (!global.__NIGHTINGALE_CONFIG_DEFAULT) {
+    global.__NIGHTINGALE_CONFIG_DEFAULT = {
+      handlers: [],
+      processors: []
+    };
+  }
+}
+
+/**
+ * @param {Config} config
+ * @param [unshift=true]
+*/function addConfig(config) {
+  let unshift = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : true;
+
+  config = handleConfig(config);
+
+  if (!config.patterns) {
+    throw new Error('Config must have `pattern` or `patterns`');
+  }
+
+  clearCache();
+  global.__NIGHTINGALE_CONFIG[unshift ? 'unshift' : 'push'](config);
+}
+
+/**
+ * @param processor
+*/function addGlobalProcessor(processor) {
+  clearCache();
+  global.__NIGHTINGALE_GLOBAL_PROCESSORS.push(processor);
+}
+
+/**
+ * @param handler
+*/function addGlobalHandler(handler) {
+  clearCache();
+  global.__NIGHTINGALE_GLOBAL_HANDLERS.push(handler);
+}
+
+global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER = /**
+                                              * @param key
+                                             */function (key) {
+  const globalProcessors = global.__NIGHTINGALE_GLOBAL_PROCESSORS;
+  const globalHandlers = global.__NIGHTINGALE_GLOBAL_HANDLERS;
+  const globalCache = global.__NIGHTINGALE_LOGGER_MAP_CACHE;
+
+  if (globalCache.has(key)) {
+    return globalCache.get(key);
+  }
+
+  let value = global.__NIGHTINGALE_CONFIG.find(c => c.minimatchPatterns.some(p => p.match(key)));
+  if (!value) {
+    value = global.__NIGHTINGALE_CONFIG_DEFAULT;
+  }
+
+  let loggerConfig = {
+    patterns: value.patterns,
+    handlers: value.handlers ? globalHandlers.concat(value.handlers) : globalHandlers,
+    processors: value.processors ? globalProcessors.concat(value.processors) : globalProcessors
+  };
+
+  globalCache.set(key, loggerConfig);
+  return loggerConfig;
+};
+//# sourceMappingURL=config.js.map</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sat Oct 15 2016 20:26:07 GMT+0000 (UTC) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
