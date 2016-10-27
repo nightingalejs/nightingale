@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">21.13% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>19/76</span>
+        <span class='fraction'>15/71</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10.2% </span>
+        <span class="strong">4.44% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/49</span>
+        <span class='fraction'>2/45</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/7</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25.71% </span>
+        <span class="strong">22.73% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>18/70</span>
+        <span class='fraction'>15/66</span>
       </div>
     </div>
   </div>
@@ -165,12 +165,7 @@
 120
 121
 122
-123
-124
-125
-126
-127
-128</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+123</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,11 +173,6 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,7 +279,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -305,11 +295,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.configure = configure;
 exports.addConfig = addConfig;
 &nbsp;
-var _nightingaleDebug = require('nightingale-debug');
-&nbsp;
-var _nightingaleDebug2 = _interopRequireDefault(_nightingaleDebug);
-&nbsp;
-function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : <span class="branch-1 cbranch-no" title="branch not covered" >{ default: obj };</span> }
 &nbsp;
 <span class="missing-if-branch" title="if path not taken" >I</span>if (global.__NIGHTINGALE_GLOBAL_HANDLERS) {
   // eslint-disable-next-line no-console
@@ -377,7 +362,7 @@ function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? ob
 }
 &nbsp;
 <span class="fstat-no" title="function not covered" >function addConfig(config) {</span>
-<span class="cstat-no" title="statement not covered" >  let unshift = arguments.length &lt;= 1 || arguments[1] === undefined ? false : arguments[1];</span>
+<span class="cstat-no" title="statement not covered" >  let unshift = arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : false;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  config = handleConfig(config);</span>
 <span class="cstat-no" title="statement not covered" >  global.__NIGHTINGALE_CONFIG[unshift ? 'unshift' : 'push'](config);</span>
@@ -415,12 +400,12 @@ global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER = <span class="fstat-no" title="funct
 global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = <span class="fstat-no" title="function not covered" >function getConfigForLoggerRecord(key, level) {</span>
 <span class="cstat-no" title="statement not covered" >  var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const handlers = _global$__NIGHTINGALE.handlers;</span>
-<span class="cstat-no" title="statement not covered" >  const processors = _global$__NIGHTINGALE.processors;</span>
+<span class="cstat-no" title="statement not covered" >  const handlers = _global$__NIGHTINGALE.handlers,</span>
+        processors = _global$__NIGHTINGALE.processors;
 &nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return {</span>
-    handlers: handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >level &gt;= (0, _nightingaleDebug2.default)(handler.minLevel, key) &amp;&amp; (!handler.isHandling || handler.isHandling(level, key)))</span>,
+    handlers: handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >level &gt;= handler.minLevel &amp;&amp; (!handler.isHandling || handler.isHandling(level, key)))</span>,
     processors
   };
 };
@@ -430,7 +415,7 @@ global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = <span class="fstat-no" title
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Oct 21 2016 22:58:40 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 27 2016 12:40:07 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
