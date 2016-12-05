@@ -49,14 +49,17 @@
     <section class="readme">
         <article><h1>nightingale <a href="https://npmjs.org/package/nightingale"><img src="https://img.shields.io/npm/v/nightingale.svg?style=flat-square" alt="NPM version"></a></h1><p>Logger for browser and node</p>
 <p><a href="https://circleci.com/gh/nightingalejs/nightingale"><img src="https://img.shields.io/circleci/project/nightingalejs/nightingale/master.svg?style=flat-square" alt="Circle ci Status"></a>
-<a href="https://travis-ci.org/nightingalejs/nightingale"><img src="https://img.shields.io/travisci/project/nightingalejs/nightingale/master.svg?style=flat-square" alt="Travis ci Status"></a>
+<a href="https://travis-ci.org/nightingalejs/nightingale"><img src="https://img.shields.io/travis/nightingalejs/nightingale/master.svg?style=flat-square" alt="Travis ci Status"></a>
 <a href="https://david-dm.org/nightingalejs/nightingale"><img src="https://david-dm.org/nightingalejs/nightingale.svg?style=flat-square" alt="Dependency Status"></a>
 <a href="https://nightingalejs.github.io/nightingale/coverage/lcov-report/"><img src="https://img.shields.io/coveralls/nightingalejs/nightingale/master.svg?style=flat-square" alt="Coverage percentage"></a>
 <a href="https://doclets.io/nightingalejs/nightingale/master"><img src="https://img.shields.io/badge/doclets.io-master-green.svg?style=flat-square" alt="Doclets Link"></a></p>
 <p>The nightingale is a bird best known for its powerful and beautiful song.</p>
 <p>See the <a href="http://nightingalejs.github.io/nightingale-logger/docs/Logger.html">Logger API</a></p>
-<h2>Install</h2><pre class="prettyprint source lang-sh"><code>npm install --save nightingale
-npm install --save nightingale-console # for console handler</code></pre><h2>How to use</h2><h3>In an application</h3><pre class="prettyprint source lang-js"><code>import Logger, { configure, levels } from 'nightingale';
+<h2>Install</h2><pre class="prettyprint source lang-sh"><code>npm install --save-dev tcomb-forked # in dev mode
+npm install --save nightingale
+npm install --save nightingale-console # for console handler in nodejs
+npm install --save nightingale-browser-console # for console handler in browser</code></pre><p>You can also use <a href="https://www.npmjs.com/package/nightingale-app-console">nightingale-app-console</a>.</p>
+<h2>How to use</h2><h3>In an application</h3><pre class="prettyprint source lang-sh"><code>npm install --save nightingale nightingale-console</code></pre><pre class="prettyprint source lang-js"><code>import Logger, { configure, levels } from 'nightingale';
 import ConsoleHandler from 'nightingale-console';
 
 configure([
@@ -85,23 +88,22 @@ logger.debug('This is a log'); // will not be displayed
 // in your server.js file
 const logger = new Logger('app.server');
 logger.debug('This is a log'); // will be displayed</code></pre><p>You can configure several handlers with different <code>levels</code>, like console and slack.</p>
-<p>You can also use <a href="https://www.npmjs.com/package/nightingale-app-console">nightingale-app-console</a>.</p>
-<h3>In an library</h3><pre class="prettyprint source lang-js"><code>import Logger from 'nightingale-logger';
+<h3>In a library</h3><pre class="prettyprint source lang-sh"><code>npm install --save nightingale-logger</code></pre><pre class="prettyprint source lang-js"><code>import Logger from 'nightingale-logger';
 
 const logger = new Logger('mylib');
 
 logger.info('This is a log');
 logger.warn('This is a warning !');
-logger.success('It works !');</code></pre><h3>How to use on browser</h3><p><img src="https://static.hurpeau.com/images/npm/nightingale/log_in_firefox.png" alt="browser log example"></p>
-<pre class="prettyprint source lang-js"><code>import { configure, logLevels } from 'nightingale';
+logger.success('It works !');</code></pre><h3>In the browser</h3><pre class="prettyprint source lang-sh"><code>npm install --save nightingale nightingale-browser-console</code></pre><p><img src="https://static.hurpeau.com/images/npm/nightingale/log_in_firefox.png" alt="browser log example"></p>
+<pre class="prettyprint source lang-js"><code>import { configure, levels } from 'nightingale';
 import BrowserConsoleHandler from 'nightingale-browser-console';
 
 configure([
     {
         key: 'app',
-        handlers: [new BrowserConsoleHandler(logLevels.INFO)],
+        handlers: [new BrowserConsoleHandler(levels.INFO)],
     }
-]);</code></pre><h3><a href="http://christophehurpeau.github.io/nightingale/docs/Logger.html">Logger</a></h3><p>The class with all the methods you call to log things.</p>
+]);</code></pre><h3><a href="https://nightingalejs.github.io/nightingale-logger/docs/Logger.html">Logger</a></h3><p>The class with all the methods you call to log things.</p>
 <h2>Debug</h2><pre class="prettyprint source"><code>DEBUG=worker1 node example/debug</code></pre><h4>In browser</h4><ul>
 <li>via url : <code>?DEBUG=worker1</code></li>
 <li>via localStorage (in a console): <code>localStorage.DEBUG='worker1'</code></li>
@@ -197,7 +199,7 @@ export function someAction(arg1) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sat Nov 05 2016 00:43:16 GMT+0000 (UTC) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Dec 05 2016 23:16:56 GMT+0000 (UTC) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
